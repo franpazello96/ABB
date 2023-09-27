@@ -67,14 +67,13 @@ public class Arvore{
         } else if (valor > elementoAtual.getValor()) {
             elementoAtual.setDireita(removerNo(elementoAtual.getDireita(), valor));
         } else {
-            // Nodo com apenas um filho ou sem filho
+            // No com apenas um filho ou sem filho
             if (elementoAtual.getEsquerda() == null) {
                 return elementoAtual.getDireita();
             } else if (elementoAtual.getDireita() == null) {
                 return elementoAtual.getEsquerda();
             }
-
-            // Nodo com dois filhos
+            // No com dois filhos
             elementoAtual.setValor(menorValor(elementoAtual.getDireita()));
             elementoAtual.setDireita(removerNo(elementoAtual.getDireita(), elementoAtual.getValor()));
         }
@@ -91,17 +90,17 @@ public class Arvore{
 
     // Método de impressão em pré-ordem
     public void imprimir() {
-        imprimirEmPreOrdem(this.raiz);
-        System.out.println();
+        imprimirRecursivamente(this.raiz, "", true);
     }
 
-    private void imprimirEmPreOrdem(Elemento elementoAtual) {
+    private void imprimirRecursivamente(Elemento elementoAtual, String prefixo, boolean ehEsquerdo) {
         if (elementoAtual != null) {
-            System.out.print(elementoAtual.getValor() + " ");
-            imprimirEmPreOrdem(elementoAtual.getEsquerda());
-            imprimirEmPreOrdem(elementoAtual.getDireita());
+            System.out.println(prefixo + (ehEsquerdo ? "├── " : "└── ") + elementoAtual.getValor());
+
+            // Chamadas recursivas para esquerda e direita
+            imprimirRecursivamente(elementoAtual.getEsquerda(), prefixo + (ehEsquerdo ? "│   " : "    "), true);
+            imprimirRecursivamente(elementoAtual.getDireita(), prefixo + (ehEsquerdo ? "│   " : "    "), false);
         }
     }
 }
-
 
