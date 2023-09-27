@@ -10,8 +10,11 @@ public class Main {
         arvore.adicionar(55);
 
         arvore.imprimir();
+        System.out.println("============================");
         System.out.println(arvore.buscar(5));  // retornar true
         System.out.println(arvore.buscar(100)); // retornar false
+        System.out.println("============================");
+
         arvore.remover(5); // remover o nó com valor 5
         arvore.imprimir(); // verifica se 5 foi removido
     }
