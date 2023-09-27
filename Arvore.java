@@ -6,28 +6,29 @@ public class Arvore{
 
 
     // Método de adição
-    public void adicionar(int valor){
+    public boolean adicionar(int valor){
         Elemento novoElemento = new Elemento(valor);
         if (raiz == null){
             this.raiz = novoElemento;
+            return true;
         }else {
             Elemento atual = this.raiz;
             while (true) {
                 if (valor < atual.getValor()) {
                     if (atual.getEsquerda() == null) {
                         atual.setEsquerda(novoElemento);
-                        return;
+                        return true;
                     }
                     atual = atual.getEsquerda();
                 } else if (valor > atual.getValor()) {
                     if (atual.getDireita() == null) {
                         atual.setDireita(novoElemento);
-                        return;
+                        return true;
                     }
                     atual = atual.getDireita();
                 } else {
                     // Valor já existe
-                    return;
+                    return false;
                 }
             }
         }
